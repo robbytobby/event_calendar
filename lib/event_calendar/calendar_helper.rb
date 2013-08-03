@@ -180,6 +180,9 @@ module EventCalendar
         cal << %(<tr>)
         first_day_of_week.upto(last_day_of_week) do |day|
           cal << %(<td class="ec-day-header )
+	  cal << %(ec-saturday-header) if day.saturday?
+	  cal << %(ec-sunday-header) if day.sunday?
+	  cal << %(ec-holiday-header) if day.holiday?
           cal << %(ec-today-header ) if options[:show_today] and (day == Date.today)
           cal << %(ec-other-month-header ) if (day < first) || (day > last)
           cal << %(ec-weekend-day-header) if weekend?(day)
